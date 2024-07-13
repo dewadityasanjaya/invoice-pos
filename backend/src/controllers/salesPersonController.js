@@ -3,9 +3,21 @@ const { NotFoundError, ValidationError } = require('../utils/customErrors.js');
 
 // Get all salespersons
 exports.getAllSalespersons = async (req, res, next) => {
+  const { page = 1, limit = 10 } = req.query;
+
   try {
-    const result = await pool.query('SELECT * FROM Salespersons');
-    res.json(result.rows);
+    const offset = (page - 1) * limit;
+
+    const countResult = await pool.query('SELECT COUNT(*) FROM Salespersons');
+    const totalSalespersons = parseInt(countResult.rows[0].count, 10);
+    const totalPages = Math.ceil(totalSalespersons / limit);
+    
+    const result = await pool.query('SELECT * FROM Salespersons LIMIT $1 OFFSET $2', [limit, offset]);
+
+    res.json({
+      salespersons: result.rows,
+      totalPages,
+    });
   } catch (err) {
     next(err);
   }

@@ -8,6 +8,7 @@ import Dashboard from './pages/DashboardPage';
 import Invoice from './pages/InvoicePage';
 import Product from './pages/ProductPage';
 import Customer from './pages/CustomerPage';
+import Salesperson from './pages/SalespersonPage';
 import { setInvoices } from './features/invoice/invoiceActions';
 
 const App = ({ setInvoices }) => {
@@ -37,6 +38,7 @@ const App = ({ setInvoices }) => {
               <Route path="/invoice" element={<Invoice />} />
               <Route path="/product" element={<Product />} />
               <Route path="/customer" element={<Customer />} />
+              <Route path="/salesperson" element={<Salesperson />} />
               <Route path="/" element={<Dashboard />} />
             </Routes>
           </main>

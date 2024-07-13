@@ -9,6 +9,7 @@ function Sidebar() {
         <li><NavLink to="/invoice" className={({ isActive }) => (isActive ? 'active' : '')}>Invoice</NavLink></li>
         <li><NavLink to="/product" className={({ isActive }) => (isActive ? 'active' : '')}>Product</NavLink></li>
         <li><NavLink to="/customer" className={({ isActive }) => (isActive ? 'active' : '')}>Customer</NavLink></li>
+        <li><NavLink to="/salesperson" className={({ isActive }) => (isActive ? 'active' : '')}>Salesperson</NavLink></li>
       </ul>
     </nav>
   );

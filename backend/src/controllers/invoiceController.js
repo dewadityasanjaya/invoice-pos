@@ -35,9 +35,21 @@ exports.createInvoice = async (req, res, next) => {
 
 // Get invoice summary
 exports.getInvoiceSummary = async (req, res, next) => {
+  const { page = 1, limit = 10 } = req.query;
+
   try {
-    const result = await pool.query('SELECT * FROM InvoiceSummary');
-    res.json(result.rows);
+    const offset = (page - 1) * limit;
+
+    const countResult = await pool.query('SELECT COUNT(*) FROM InvoiceSummary');
+    const totalInvoiceSummary = parseInt(countResult.rows[0].count, 10);
+    const totalPages = Math.ceil(totalInvoiceSummary / limit);
+
+    const result = await pool.query('SELECT * FROM InvoiceSummary LIMIT $1 OFFSET $2', [limit, offset]);
+    
+    res.json({
+      invoiceSummary: result.rows,
+      totalPages,
+    });
   } catch (err) {
     next(err);
   }

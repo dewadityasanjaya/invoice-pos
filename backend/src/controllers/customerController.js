@@ -1,11 +1,23 @@
 const pool = require('../config/db');
 const { NotFoundError, ValidationError } = require('../utils/customErrors.js');
 
-// Get all customers
+// Get all customers with pagination
 exports.getAllCustomers = async (req, res, next) => {
+  const { page = 1, limit = 10 } = req.query;
+
   try {
-    const result = await pool.query('SELECT * FROM Customers');
-    res.json(result.rows);
+    const offset = (page - 1) * limit;
+
+    const countResult = await pool.query('SELECT COUNT(*) FROM Customers');
+    const totalCustomers = parseInt(countResult.rows[0].count, 10);
+    const totalPages = Math.ceil(totalCustomers / limit);
+
+    const result = await pool.query('SELECT * FROM Customers LIMIT $1 OFFSET $2', [limit, offset]);
+
+    res.json({
+      customers: result.rows,
+      totalPages,
+    });
   } catch (err) {
     next(err);
   }
