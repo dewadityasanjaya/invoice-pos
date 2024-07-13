@@ -1,5 +1,5 @@
 const pool = require('../config/db');
-const { ValidationError } = require('../utils/customErrors');
+const { NotFoundError, ValidationError } = require('../utils/customErrors.js');
 
 // Get all products
 exports.getAllProducts = async (req, res, next) => {
