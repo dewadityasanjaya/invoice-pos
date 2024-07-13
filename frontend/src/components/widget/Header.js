@@ -1,12 +1,13 @@
 import React from 'react';
-import '../Header.css'; // Create and use a CSS file for Header specific styles
+import '../../styles/Header.css';
 import { FaUserCircle, FaBell, FaEnvelope } from 'react-icons/fa';
+import logo from '../../assets/logo-pos.png';
 
 function Header() {
   return (
     <header className="App-header">
       <div className="header-left">
-        <img src="/path/to/logo.png" alt="Logo" className="logo" /> {/* Replace with your logo path */}
+        <img src={logo} alt="Logo" className="logo" />
       </div>
       <div className="header-right">
         <FaEnvelope className="header-icon" />

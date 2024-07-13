@@ -1,4 +1,4 @@
-import { ADD_INVOICE, SET_INVOICES } from '../actions/invoiceActions';
+import { ADD_INVOICE, SET_INVOICES } from './invoiceActions';
 
 const initialState = {
   data: [],

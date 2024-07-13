@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import invoiceReducer from './reducers/invoiceReducer';
+import invoiceReducer from '../features/invoice/invoiceReducer';
 
 const rootReducer = combineReducers({
   invoices: invoiceReducer,

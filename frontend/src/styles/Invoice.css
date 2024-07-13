@@ -1,0 +1,117 @@
+.InvoiceCards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.Pagination {
+	display: flex;
+	justify-content: end;
+}
+
+.InvoiceHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.AddInvoiceButton {
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.AddInvoiceButton i {
+	margin-right: 8px;
+}
+
+.ModalBackdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ModalContent {
+	background: white;
+	padding: 20px;
+	border-radius: 4px;
+	width: 400px;
+}
+
+.ModalContent h2 {
+	margin-top: 0;
+}
+
+.ModalContent form {
+	display: flex;
+	flex-direction: column;
+}
+
+.ModalContent input,
+.ModalContent textarea {
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+
+.ModalContent button {
+	margin-top: 10px;
+	padding: 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.ModalContent button[type="submit"] {
+	background-color: #4caf50;
+	color: white;
+}
+
+.ModalContent button[type="button"] {
+	background-color: #f44336;
+	color: white;
+}
+
+.RevenueHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.RevenueSection {
+	width: 100%;
+	height: 400px;
+}
+
+.TimeSeriesFilter {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+  }
+  
+  .TimeSeriesFilter label {
+	margin-right: 10px;
+	font-size: 16px;
+  }
+  
+  .TimeSeriesFilter select {
+	padding: 10px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	font-size: 16px;
+  }

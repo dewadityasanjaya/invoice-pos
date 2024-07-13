@@ -5,21 +5,20 @@
 	background-color: #282c34;
 	padding: 10px 20px;
 	color: white;
-  }
-  
-  .header-left .logo {
+}
+
+.header-left .logo {
 	height: 40px;
-  }
-  
-  .header-right {
+}
+
+.header-right {
 	display: flex;
 	align-items: center;
-  }
-  
-  .header-icon {
+}
+
+.header-icon {
 	color: white;
 	font-size: 1.5em;
 	margin-left: 15px;
 	cursor: pointer;
-  }
-  
+}

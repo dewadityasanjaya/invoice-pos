@@ -1,24 +1,26 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './App.css';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
-import Invoice from './components/Invoice';
-import Product from './components/Product';
-import Customer from './components/Customer';
-import { setInvoices } from './actions/invoiceActions';
+import './styles/App.css';
+import Header from './components/widget/Header';
+import Sidebar from './components/widget/Sidebar';
+import Dashboard from './pages/DashboardPage';
+import Invoice from './pages/InvoicePage';
+import Product from './pages/ProductPage';
+import Customer from './pages/CustomerPage';
+import { setInvoices } from './features/invoice/invoiceActions';
 
 const App = ({ setInvoices }) => {
   useEffect(() => {
-    // Example invoices data
     const exampleInvoices = [
       { id: 1, customerName: 'John Doe', salespersonName: 'Jane Smith', totalAmount: 100, notes: 'First invoice' },
       { id: 2, customerName: 'Mary Jane', salespersonName: 'John Smith', totalAmount: 200, notes: 'Second invoice' },
       { id: 3, customerName: 'Peter Parker', salespersonName: 'Jane Doe', totalAmount: 150, notes: 'Third invoice' },
       { id: 4, customerName: 'Clark Kent', salespersonName: 'Lois Lane', totalAmount: 250, notes: 'Fourth invoice' },
-      // Add more invoices as needed
+      { id: 5, customerName: 'Clark Kent', salespersonName: 'Jane Smith', totalAmount: 100, notes: 'First invoice' },
+      { id: 6, customerName: 'Peter Parker', salespersonName: 'John Smith', totalAmount: 200, notes: 'Second invoice' },
+      { id: 7, customerName: 'Mary Jane', salespersonName: 'Jane Doe', totalAmount: 150, notes: 'Third invoice' },
+      { id: 8, customerName: 'John Doe', salespersonName: 'Lois Lane', totalAmount: 250, notes: 'Fourth invoice' },
     ];
     setInvoices(exampleInvoices);
   }, [setInvoices]);

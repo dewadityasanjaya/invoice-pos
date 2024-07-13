@@ -1,0 +1,7 @@
+.InvoiceCards {
+	justify-content: space-around;
+}
+
+.InvoiceCard {
+	width: 300px;
+}
