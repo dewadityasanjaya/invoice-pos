@@ -60,7 +60,7 @@ function InvoicePage() {
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
-      <InvoiceRevenue />
+      {summary.length > 0 && <InvoiceRevenue />}
       {isModalOpen && <InvoiceForm onClose={handleModalClose} onSubmit={handleFormSubmit} />}
     </div>
   );

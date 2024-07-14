@@ -7,7 +7,7 @@ import '../../styles/InvoiceRevenue.css';
 function InvoiceRevenue() {
   const dispatch = useDispatch();
   const [filter, setFilter] = useState('daily');
-  const { dailyRevenue, weeklyRevenue, monthlyRevenue } = useSelector((state) => state.invoices);
+  const { dailyRevenue, weeklyRevenue, monthlyRevenue, status, error } = useSelector((state) => state.invoices);
   const [label, setLabel] = useState([]);
   const [data, setData] = useState([]);
 
@@ -50,22 +50,24 @@ function InvoiceRevenue() {
 
   return (
     <div className="InvoiceRevenue">
-		<div className="InvoiceHeader">
-			<h2>Revenue</h2>
-      		<div>
-        		<select id="filter" value={filter} onChange={(e) => setFilter(e.target.value)}>
-          			<option value="daily">Daily</option>
-          			<option value="weekly">Weekly</option>
-          			<option value="monthly">Monthly</option>
-        		</select>
-      		</div>
-		</div>
-		<div className='TimeSeriesGraph'>
-			<TimeSeriesGraph
-				label={label}
-				data={data}
-			/>
-		</div>
+      <div className="InvoiceHeader">
+        <h2>Revenue</h2>
+            <div>
+              <select id="filter" value={filter} onChange={(e) => setFilter(e.target.value)}>
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+              </select>
+            </div>
+      </div>
+      <div className='TimeSeriesGraph'>
+        <TimeSeriesGraph
+          label={label}
+          data={data}
+          status={status}
+          error={error}
+        />
+      </div>
     </div>
   );
 }
