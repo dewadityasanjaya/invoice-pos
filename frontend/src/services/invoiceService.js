@@ -9,9 +9,9 @@ export const createInvoice = async (invoiceData) => {
   }
 };
 
-export const getInvoiceSummary = async () => {
+export const getInvoiceSummary = async (page = 1, limit = 10) => {
   try {
-    const response = await axios.get('/invoices/summary');
+    const response = await axios.get(`/invoices/summary?page=${page}&limit${limit}`);
     return response.data;
   } catch (error) {
     throw error.response?.data || error;

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addInvoice, fetchInvoiceSummary, fetchInvoiceDetails, fetchDailyRevenue, fetchWeeklyRevenue, fetchMonthlyRevenue } from '../redux/invoiceSlice';
+import { addInvoice, fetchInvoiceSummary } from '../redux/invoiceSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageHeader from '../components/widget/PageHeader';
 import InvoiceForm from '../components/invoice/InvoiceForm';
+import InvoiceCards from '../components/invoice/InvoiceCards';
 import Pagination from '../components/widget/Pagination';
 
 function InvoicePage() {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const { list, status, error, totalPages } = useSelector((state) => state.invoices);
+  const { summary, status, error, totalPages } = useSelector((state) => state.invoices);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   useEffect(() => {
     dispatch(fetchInvoiceSummary({ page: currentPage, limit: 10 }));
   }, [dispatch, currentPage]);
@@ -45,14 +46,14 @@ function InvoicePage() {
     <div>
       <ToastContainer />
       <PageHeader
-        titleHeader={"Invoice"}
+        titleHeader="Invoice"
         onClickHandle={handleAddButtonClick}
       />
-      {/* <CustomerList 
-        list={list}
+      <InvoiceCards 
+        list={summary}
         status={status}
         error={error}
-      /> */}
+      />
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

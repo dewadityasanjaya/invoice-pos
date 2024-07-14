@@ -13,9 +13,12 @@ export const addInvoice = createAsyncThunk('invoices/add', async (invoiceData) =
   return data;
 });
 
-export const fetchInvoiceSummary = createAsyncThunk('invoices/fetchSummary', async () => {
-  const data = await getInvoiceSummary();
-  return data;
+export const fetchInvoiceSummary = createAsyncThunk('invoices/fetchSummary', async ({page, limit}) => {
+  const data = await getInvoiceSummary(page, limit);
+  return {
+    summary: data.invoiceSummary,
+    totalPages: data.totalPages,
+  };
 });
 
 export const fetchInvoiceDetails = createAsyncThunk('invoices/fetchDetails', async (invoiceID) => {
@@ -47,7 +50,8 @@ const invoiceSlice = createSlice({
     weeklyRevenue: [],
     monthlyRevenue: [],
     status: 'idle',
-    error: null
+    error: null,
+    totalPages: 1,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -67,7 +71,8 @@ const invoiceSlice = createSlice({
       })
       .addCase(fetchInvoiceSummary.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.summary = action.payload;
+        state.summary = action.payload.summary;
+        state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchInvoiceSummary.rejected, (state, action) => {
         state.status = 'failed';
