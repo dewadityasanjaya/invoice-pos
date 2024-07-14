@@ -7,6 +7,7 @@ import PageHeader from '../components/widget/PageHeader';
 import InvoiceForm from '../components/invoice/InvoiceForm';
 import InvoiceCards from '../components/invoice/InvoiceCards';
 import Pagination from '../components/widget/Pagination';
+import InvoiceRevenue from '../components/invoice/InvoiceRevenue';
 
 function InvoicePage() {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ function InvoicePage() {
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
+      <InvoiceRevenue />
       {isModalOpen && <InvoiceForm onClose={handleModalClose} onSubmit={handleFormSubmit} />}
     </div>
   );

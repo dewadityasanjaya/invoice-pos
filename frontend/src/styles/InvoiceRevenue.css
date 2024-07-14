@@ -1,0 +1,26 @@
+.InvoiceRevenue {
+	padding: 20px;
+	background-color: #f5f5f5;
+	border-radius: 8px;
+}
+
+.InvoiceHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.InvoiceHeader h2 {
+	margin: 0;
+}
+
+.InvoiceHeader select {
+	padding: 5px;
+}
+
+.TimeSeriesGraph {
+	position: relative;
+	margin: auto;
+	width: 100%;
+}
