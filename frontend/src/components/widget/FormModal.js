@@ -30,7 +30,6 @@ const FormModal = ({ title, fields, validationSchema, onSubmit, onClose }) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(errors);
     e.preventDefault();
     if (await handleValidation()) {
       try {

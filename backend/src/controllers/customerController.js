@@ -12,7 +12,7 @@ exports.getCustomers = async (req, res, next) => {
     const totalCustomers = parseInt(countResult.rows[0].count, 10);
     const totalPages = Math.ceil(totalCustomers / limit);
 
-    const result = await pool.query('SELECT * FROM Customers LIMIT $1 OFFSET $2', [limit, offset]);
+    const result = await pool.query('SELECT * FROM Customers ORDER BY customerid DESC LIMIT $1 OFFSET $2', [limit, offset]);
 
     res.json({
       customers: result.rows,

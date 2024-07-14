@@ -4,7 +4,7 @@ const { NotFoundError, ValidationError } = require('../utils/customErrors.js');
 // Get all customers
 exports.getAllCustomers = async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM customers');
+    const result = await pool.query('SELECT * FROM customers ORDER BY customerid DESC');
     if (result.rows.length === 0) {
       throw new NotFoundError('No customers found');
     }

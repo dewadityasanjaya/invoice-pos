@@ -12,7 +12,7 @@ exports.getProducts = async (req, res, next) => {
     const totalProducts = parseInt(countResult.rows[0].count, 10);
     const totalPages = Math.ceil(totalProducts / limit);
 
-    const result = await pool.query('SELECT * FROM Products LIMIT $1 OFFSET $2', [limit, offset]);
+    const result = await pool.query('SELECT * FROM Products ORDER BY productid DESC LIMIT $1 OFFSET $2', [limit, offset]);
 
     res.json({
       products: result.rows,

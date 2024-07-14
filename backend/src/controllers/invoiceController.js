@@ -44,7 +44,7 @@ exports.getInvoiceSummary = async (req, res, next) => {
     const totalInvoiceSummary = parseInt(countResult.rows[0].count, 10);
     const totalPages = Math.ceil(totalInvoiceSummary / limit);
 
-    const result = await pool.query('SELECT * FROM InvoiceSummary LIMIT $1 OFFSET $2', [limit, offset]);
+    const result = await pool.query('SELECT * FROM InvoiceSummary ORDER BY invoiceid DESC LIMIT $1 OFFSET $2', [limit, offset]);
     
     res.json({
       invoiceSummary: result.rows,
