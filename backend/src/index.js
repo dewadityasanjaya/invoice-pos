@@ -4,9 +4,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 // Import routes
+const allCustomerRoutes = require('./routes/allCustomerRoutes');
+const allProductRoutes = require('./routes/allProductRoutes');
+const allSalespersonRoutes = require('./routes/allSalespersonRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 const productRoutes = require('./routes/productRoutes');
-const salesPersonRoutes = require('./routes/salesPersonRoutes');
+const salespersonRoutes = require('./routes/salespersonRoutes');
 const invoiceRoutes = require('./routes/invoiceRoutes');
 const revenueRoutes = require('./routes/revenueRoutes');
 
@@ -22,9 +25,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Use routes
+app.use('/allCustomers', allCustomerRoutes);
+app.use('/allProducts', allProductRoutes);
+app.use('/allSalespersons', allSalespersonRoutes);
 app.use('/customers', customerRoutes);
 app.use('/products', productRoutes);
-app.use('/salespersons', salesPersonRoutes);
+app.use('/salespersons', salespersonRoutes);
 app.use('/invoices', invoiceRoutes);
 app.use('/revenue', revenueRoutes);
 

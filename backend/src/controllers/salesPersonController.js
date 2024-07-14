@@ -1,8 +1,8 @@
-const pool = require('../config/db');
+const pool = require('../config/db.js');
 const { NotFoundError, ValidationError } = require('../utils/customErrors.js');
 
-// Get all salespersons
-exports.getAllSalespersons = async (req, res, next) => {
+// Get salespersons with pagination
+exports.getSalespersons = async (req, res, next) => {
   const { page = 1, limit = 10 } = req.query;
 
   try {

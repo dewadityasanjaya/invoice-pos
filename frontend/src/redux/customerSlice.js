@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllCustomers, createCustomer } from '../services/customerService';
+import { createCustomer, getCustomers } from '../services/customerService';
 
-export const fetchCustomers = createAsyncThunk('customers/fetchAll', async ({ page, limit }) => {
-  const data = await getAllCustomers(page, limit);
+export const fetchCustomers = createAsyncThunk('customers/fetch', async ({ page, limit }) => {
+  const data = await getCustomers(page, limit);
   return {
     customers: data.customers,
     totalPages: data.totalPages,

@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllProducts, createProduct } from '../services/productService';
+import { getProducts, createProduct } from '../services/productService';
 
-export const fetchProducts = createAsyncThunk('products/fetchAll', async ({ page, limit }) => {
-  const data = await getAllProducts(page, limit);
+export const fetchProducts = createAsyncThunk('products/fetch', async ({ page, limit }) => {
+  const data = await getProducts(page, limit);
   return {
     products: data.products,
     totalPages: data.totalPages,
