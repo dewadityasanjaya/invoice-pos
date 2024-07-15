@@ -62,7 +62,11 @@ exports.getInvoiceDetails = async (req, res, next) => {
   try {
     // Get invoice
     const invoiceResult = await pool.query(
-      `SELECT * FROM Invoices WHERE InvoiceID = $1`,
+      `SELECT i.*, c.CustomerName, s.SalespersonName 
+       FROM Invoices i
+       JOIN Customers c ON i.CustomerID = c.CustomerID
+       JOIN Salespersons s ON i.SalespersonID = s.SalespersonID
+       WHERE i.InvoiceID = $1`,
       [invoiceID]
     );
 
@@ -81,11 +85,27 @@ exports.getInvoiceDetails = async (req, res, next) => {
       [invoiceID]
     );
 
+    const items = itemsResult.rows;
+
+    // Calculate total amount paid
+    const totalAmountPaid = items.reduce((total, item) => total + (item.quantity * parseFloat(item.unitprice)), 0);
+
     res.json({
-      ...invoice,
-      items: itemsResult.rows
+      invoiceid: invoice.invoiceid,
+      invoicedate: invoice.invoicedate,
+      customername: invoice.customername,
+      salespersonname: invoice.salespersonname,
+      notes: invoice.notes,
+      items: items.map(item => ({
+        productname: item.productname,
+        productpicture: item.productpicture,
+        quantity: item.quantity,
+        unitprice: item.unitprice
+      })),
+      totalamountpaid: totalAmountPaid
     });
   } catch (err) {
     next(err);
   }
 };
+
